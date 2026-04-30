@@ -185,7 +185,8 @@ class Avalan < Formula
       apple
       nvidia
     ].join(",")
-    package = "#{cached_download}[#{extras}]"
+    # Extras must be attached to the distribution name for pip to resolve them from a wheel.
+    package = "avalan[#{extras}] @ file://#{cached_download}"
     system venv_python, "-m", "pip", "install",
            "--disable-pip-version-check",
            "--no-cache-dir",
