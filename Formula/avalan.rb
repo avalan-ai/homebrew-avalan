@@ -11,10 +11,13 @@ class Avalan < Formula
 
 
   def install
-    venv = virtualenv_create(libexec, "python3.12")
-    venv.pip_install resources
+    virtualenv_create(libexec, "python3.12")
 
-    system libexec/"bin/pip", "install", "avalan[agent,server,tool,vendors,memory]==#{version}"
+    python = Formula["python@3.12"].opt_bin/"python3.12"
+    system python, "-m", "pip",
+           "--python=#{libexec}/bin/python",
+           "install",
+           "avalan[agent,server,tool,vendors,memory]==#{version}"
 
     bin.install_symlink libexec/"bin/avalan"
     bin.install_symlink libexec/"bin/avl"
