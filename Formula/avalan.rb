@@ -8,6 +8,7 @@ class Avalan < Formula
   license "MIT"
 
   depends_on "python@3.12"
+  depends_on "rust" => :build
 
 
   def install
@@ -17,7 +18,8 @@ class Avalan < Formula
     system python, "-m", "pip",
            "--python=#{libexec}/bin/python",
            "install",
-           "avalan[agent,server,tool,vendors,memory]==#{version}"
+           "--no-binary=cryptography",
+           "avalan[agent,server,tool,vendors,memory,audio]==#{version}"
 
     bin.install_symlink libexec/"bin/avalan"
     bin.install_symlink libexec/"bin/avl"
