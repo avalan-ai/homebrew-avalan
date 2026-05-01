@@ -8,9 +8,13 @@ on:
 
 jobs:
   brew:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-14]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+      - uses: Homebrew/actions/setup-homebrew@main
       - name: Install formula from source
         run: brew install --build-from-source ./Formula/avalan.rb
       - name: Test formula
