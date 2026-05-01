@@ -18,7 +18,7 @@ class Avalan < Formula
     system python, "-m", "pip",
            "--python=#{libexec}/bin/python",
            "install",
-           "--no-binary=cryptography",
+           "--no-binary=cryptography,jiter",
            "avalan[agent,server,tool,vendors,memory,audio]==#{version}"
 
     bin.install_symlink libexec/"bin/avalan"
