@@ -16,7 +16,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: Homebrew/actions/setup-homebrew@main
+      - name: Tap local repository
+        run: brew tap --overwrite avalan-ai/avalan "${GITHUB_WORKSPACE}"
       - name: Install formula from source
         run: brew install --build-from-source avalan-ai/avalan/avalan
       - name: Test formula
-        run: brew test avalan-ai/avalan/avalan
+        run: brew test avalan
