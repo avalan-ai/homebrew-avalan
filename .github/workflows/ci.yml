@@ -9,6 +9,7 @@ on:
 jobs:
   brew:
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-14]
     runs-on: ${{ matrix.os }}
@@ -16,6 +17,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: Homebrew/actions/setup-homebrew@main
       - name: Install formula from source
-        run: brew install --build-from-source ./Formula/avalan.rb
+        run: brew install --build-from-source avalan-ai/avalan/avalan
       - name: Test formula
-        run: brew test avalan
+        run: brew test avalan-ai/avalan/avalan

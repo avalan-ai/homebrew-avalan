@@ -9,15 +9,15 @@ class Avalan < Formula
 
   depends_on "python@3.12"
 
-  resource "avalan" do
-    url "https://files.pythonhosted.org/packages/1e/2a/a21ce9f3681222dbcabc14b09d5bb2dd25bc8c220d35e21fd7afb466248a/avalan-1.4.1-py3-none-any.whl"
-    sha256 "d1b1b884cb03accba9eb5b5a7af51e26482440a958c75369c033cde423400c6b"
-  end
 
   def install
     venv = virtualenv_create(libexec, "python3.12")
-    venv.pip_install resources.reject { |r| r.name == "avalan" }
-    venv.pip_install_and_link resource("avalan")
+    venv.pip_install resources
+
+    system libexec/"bin/pip", "install", "avalan[agent,server,tool,vendors,memory]==#{version}"
+
+    bin.install_symlink libexec/"bin/avalan"
+    bin.install_symlink libexec/"bin/avl"
   end
 
   test do
