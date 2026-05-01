@@ -16,6 +16,7 @@ class Avalan < Formula
 
   def install
     venv = virtualenv_create(libexec, "python3.12")
+    venv.pip_install resources
     venv.pip_install_and_link resource("avalan")
   end
 
