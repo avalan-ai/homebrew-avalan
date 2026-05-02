@@ -22,20 +22,6 @@ class Avalan < Formula
            "--no-binary=cryptography,jiter",
            "avalan[agent,server,tool,vendors]==#{version}"
 
-    system python, "-m", "pip",
-           "--python=#{libexec}/bin/python",
-           "install",
-           "psycopg[c,pool]>=3.2.9,<4",
-           "pgvector>=0.4.1,<0.5",
-           "faiss-cpu>=1.11.0.post1,<2",
-           "markitdown[pdf]>=0.1.2,<0.2",
-           "markdownify>=1.1.0,<2",
-           "beautifulsoup4>=4.14.2,<5",
-           "pypdf>=6.1.1,<7",
-           "boto3>=1.40.3,<2",
-           "elasticsearch>=9.1.0,<10",
-           "tree-sitter>=0.25.1,<0.26",
-           "tree-sitter-python>=0.23.6,<0.24"
 
     bin.install_symlink libexec/"bin/avalan"
     bin.install_symlink libexec/"bin/avl"
