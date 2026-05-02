@@ -20,7 +20,7 @@ class Avalan < Formula
            "--python=#{libexec}/bin/python",
            "install",
            "--no-binary=cryptography,jiter",
-           "avalan[agent,server,tool,vendors,audio]==#{version}"
+           "avalan[agent,server,tool,vendors]==#{version}"
 
     system python, "-m", "pip",
            "--python=#{libexec}/bin/python",
