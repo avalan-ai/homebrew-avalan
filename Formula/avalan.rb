@@ -19,7 +19,7 @@ class Avalan < Formula
     system python, "-m", "pip",
            "--python=#{libexec}/bin/python",
            "install",
-           "--no-binary=cryptography,jiter",
+           "--no-binary=cryptography,jiter,pydantic-core",
            "avalan[agent,server,tool,vendors]==#{version}"
 
 
