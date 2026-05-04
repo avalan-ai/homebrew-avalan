@@ -3,8 +3,8 @@ class Avalan < Formula
 
   desc "Multi-backend, multi-modal framework for AI agent development"
   homepage "https://github.com/avalan-ai/avalan"
-  url "https://files.pythonhosted.org/packages/14/b2/075d312935a8cddf364db31f48e97f37bf141d9126a90cbf408fa492e51c/avalan-1.4.1.tar.gz"
-  sha256 "d8c8756bb9dbaba9aa3b26620fb11de08bf9d71de2740914fea3d9bbe3856615"
+  url "https://files.pythonhosted.org/packages/de/cd/02055cc273263f76b0b56e81fcb18aea0753b08ce11d65e37d75fcb28086/avalan-1.4.4.tar.gz"
+  sha256 "5a1738e817d4e5226ff62762b9f7a07213013c7a4f77b446bc1aac99bf805b4c"
   license "MIT"
 
   depends_on "python@3.12"
