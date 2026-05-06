@@ -10,6 +10,8 @@ class Avalan < Formula
   depends_on "rust" => :build
   depends_on "python@3.12"
 
+  preserve_rpath
+
   def install
     virtualenv_create(libexec, "python3.12")
 
