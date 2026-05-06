@@ -7,7 +7,6 @@ class Avalan < Formula
   sha256 "b8f85424240dca102cef2e047c567b4f6f263fb7546710d7dc9c7c8d54928cf1"
   license "MIT"
 
-  depends_on "rust" => :build
   depends_on "python@3.12"
 
   preserve_rpath
@@ -19,7 +18,6 @@ class Avalan < Formula
     system python, "-m", "pip",
            "--python=#{libexec}/bin/python",
            "install",
-           "--no-binary=cryptography,jiter,pydantic-core",
            "avalan[agent,server,tool,vendors]==#{version}"
 
     bin.install_symlink libexec/"bin/avalan"
