@@ -3,14 +3,13 @@ class Avalan < Formula
 
   desc "Multi-backend, multi-modal framework for AI agent development"
   homepage "https://github.com/avalan-ai/avalan"
-  url "https://files.pythonhosted.org/packages/14/b2/075d312935a8cddf364db31f48e97f37bf141d9126a90cbf408fa492e51c/avalan-1.4.1.tar.gz"
-  sha256 "d8c8756bb9dbaba9aa3b26620fb11de08bf9d71de2740914fea3d9bbe3856615"
+  url "https://files.pythonhosted.org/packages/c3/f4/26508259f37b38fddbcbd0bd24c0376b5716814c5e29fb30fa1aa3f6120a/avalan-1.4.5.tar.gz"
+  sha256 "b8f85424240dca102cef2e047c567b4f6f263fb7546710d7dc9c7c8d54928cf1"
   license "MIT"
 
   depends_on "python@3.12"
-  depends_on "libpq"
-  depends_on "rust" => :build
 
+  preserve_rpath
 
   def install
     virtualenv_create(libexec, "python3.12")
@@ -19,9 +18,7 @@ class Avalan < Formula
     system python, "-m", "pip",
            "--python=#{libexec}/bin/python",
            "install",
-           "--no-binary=cryptography,jiter",
            "avalan[agent,server,tool,vendors]==#{version}"
-
 
     bin.install_symlink libexec/"bin/avalan"
     bin.install_symlink libexec/"bin/avl"
