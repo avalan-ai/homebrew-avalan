@@ -22,8 +22,8 @@ class Avalan < Formula
   # Avalan's CLI eagerly imports modules from these extras at startup (e.g. the
   # `tool` extra is needed for SQLAlchemy types used by tool.database). Keep the
   # set curated and lean — heavyweight/hardware-specific extras such as `local`,
-  # `audio`, `vision`, `mlx`, `apple`, `nvidia`, `vllm` and `quantization` are
-  # left for users to add via pip when they need them.
+  # `audio`, `vision`, `mlx`, `apple`, `nvidia`, `vllm`, `quantization` and `ds4`
+  # are left for users to add via pip when they need them.
   EXTRAS = %w[agent server tool vendors].freeze
 
   def install
