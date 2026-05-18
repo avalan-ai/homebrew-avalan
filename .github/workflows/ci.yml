@@ -12,10 +12,25 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-14]
+        python: ["3.11", "3.12", "3.13"]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: Homebrew/actions/setup-homebrew@main
+      # The formula's depends_on/virtualenv pin one interpreter (currently
+      # python@3.13). Rewrite both references so each matrix leg installs against
+      # the Python version it advertises, proving the install path works across
+      # avalan's supported range (>=3.11,<3.14).
+      - name: Target python@${{ matrix.python }}
+        env:
+          PY_VER: ${{ matrix.python }}
+        run: |
+          sed -i.bak \
+            -e "s/python@3\.13/python@${PY_VER}/g" \
+            -e "s/python3\.13/python${PY_VER}/g" \
+            Formula/avalan.rb
+          rm Formula/avalan.rb.bak
+          grep -E 'python(@)?3\.' Formula/avalan.rb
       - name: Install formula from source
         run: brew install --build-from-source avalan-ai/avalan/avalan
       - name: Test formula
