@@ -3,8 +3,8 @@ class Avalan < Formula
 
   desc "Multi-backend, multi-modal framework for AI agent development"
   homepage "https://github.com/avalan-ai/avalan"
-  url "https://files.pythonhosted.org/packages/3a/38/310fe6476cf52c27c7f3459dbb62ef9b101911bdf2f9eb93c69bbbc498f6/avalan-1.4.7.tar.gz"
-  sha256 "0f12d0786ace337c665e2ed8482ec3f6d30c79f583d135474f02b4670ff8fcd4"
+  url "https://files.pythonhosted.org/packages/92/72/b2184f7787ddfbc24eda3be9b4eef5aa8e536074e6c8e1d640bed6276be4/avalan-1.4.11.tar.gz"
+  sha256 "f84b0b521d36a87784eec061f428f5a290142520efe22f6e88ba4c11065aac36"
   license "MIT"
 
   livecheck do
@@ -12,22 +12,21 @@ class Avalan < Formula
     strategy :pypi
   end
 
-  depends_on "python@3.13"
+  depends_on "python@3.14"
 
   # Some installed wheels (e.g. tiktoken, pydantic-core, pillow) ship dylibs that
   # reference each other via @rpath; Homebrew's default install-name rewrite
   # would break that loader path.
   preserve_rpath
 
-  # Avalan's CLI eagerly imports modules from these extras at startup (e.g. the
-  # `tool` extra is needed for SQLAlchemy types used by tool.database). Keep the
-  # set curated and lean — heavyweight/hardware-specific extras such as `local`,
-  # `audio`, `vision`, `mlx`, `apple`, `nvidia`, `vllm`, `quantization` and `ds4`
-  # are left for users to add via pip when they need them.
+  # Keep this in parity with the default profile shipped by avalan-apt. Newer
+  # opt-in extras such as `a2a`, `browser`, `code`, `litellm`, `memory`,
+  # `translation`, `youtube`, and heavyweight hardware extras stay out of the
+  # Homebrew formula so the CLI install remains practical.
   EXTRAS = %w[agent server tool vendors].freeze
 
   def install
-    venv = virtualenv_create(libexec, "python3.13")
+    venv = virtualenv_create(libexec, "python3.14")
 
     # Install from the sdist that Homebrew already downloaded (verified via
     # `sha256` above) instead of re-fetching the package from PyPI. Bypass
@@ -35,7 +34,7 @@ class Avalan < Formula
     # `resource` block per transitive dependency. `virtualenv_create` builds
     # the venv with `--without-pip`, so drive pip from the parent interpreter
     # and target the venv via `--python=`.
-    system Formula["python@3.13"].opt_bin/"python3.13",
+    system Formula["python@3.14"].opt_bin/"python3.14",
            "-m", "pip",
            "--python=#{venv.root}/bin/python",
            "install",
