@@ -22,7 +22,9 @@ class Avalan < Formula
   # Keep this in parity with the default profile shipped by avalan-apt. Newer
   # opt-in extras such as `a2a`, `browser`, `code`, `litellm`, `memory`,
   # `translation`, `youtube`, and heavyweight hardware extras stay out of the
-  # Homebrew formula so the CLI install remains practical.
+  # Homebrew formula so the CLI install remains practical. The upstream `vllm`
+  # extra is currently reserved while its dependency chain has no patched
+  # diskcache release.
   EXTRAS = %w[agent server tool vendors].freeze
 
   def install

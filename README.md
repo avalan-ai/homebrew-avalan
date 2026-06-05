@@ -33,6 +33,9 @@ install path across Avalan's supported Python range: 3.11, 3.12, 3.13, and
 
 The default Homebrew package intentionally avoids installing every optional
 Python extra. Hardware-specific and heavyweight extras such as `mlx`, `apple`,
-`nvidia`, `vllm`, `audio`, `vision`, `quantization`, and newer opt-in extras
-such as `a2a`, `browser`, `code`, `litellm`, `memory`, `translation`, and
-`youtube` should be installed in a dedicated Python environment when needed.
+`nvidia`, `audio`, `vision`, `quantization`, and newer opt-in extras such as
+`a2a`, `browser`, `code`, `litellm`, `memory`, `translation`, and `youtube`
+should be installed in a dedicated Python environment when needed. The `vllm`
+extra is reserved upstream while vLLM depends on vulnerable `diskcache`
+releases without an upstream fix; install vLLM directly only if you accept
+that dependency.
